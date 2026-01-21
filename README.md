@@ -7,6 +7,7 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 ## ✨ Fitur Utama
 
 ### 🎯 XP & Ranking System
+
 - **Multi-command XP Management** (`/xp`, `/xpd`, `/batch`)
   - `/xp` - Manage XP by Roblox username
   - `/xpd` - Manage XP by Discord mention
@@ -16,27 +17,32 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 - **Weekly & Monthly Leaderboards** - Auto-reset tracking periods
 
 ### 🏆 Achievement & Leaderboard
+
 - **Hall of Fame** - Achievement-based records
 - **Hall of Fame Records** - Historical weekly/monthly winners
 - **Multiple Leaderboards** - All-time, Weekly, Monthly, Guide Points
 
 ### 👥 User Management
+
 - **Roblox Verification** (`/verify`, `/link`)
 - **Profile Updates** (`/update`, `/updateprofile`)
 - **Auto Role Assignment** - Based on rank/level
 
 ### 🎁 Reward System
+
 - **Guide Points** (`/guide`, `/reward`)
 - **Giveaway System** (`/giveaway`)
 - **Custom Rewards** with role-based permissions
 
 ### 🌐 Translation & Communication
+
 - **Real-time Translation** (`/translate`) - Powered by Gemini AI
 - **Daily Motivational Quotes** (`/quote`) - AI-generated quotes
 - **Temporary Voice Channels** - Auto-create/delete
 - **Ticket System** with transcript support
 
 ### 🛠️ Moderation
+
 - Kick, Ban, Mute, Warn
 - Message purge, Slowmode
 - Lock/Unlock channels
@@ -47,6 +53,7 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 ## 📦 Installation
 
 ### Prerequisites
+
 - Node.js v18 or higher
 - Discord Bot Token
 - Firebase Project (Firestore)
@@ -55,8 +62,9 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 ### Setup Steps
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/YOUR_USERNAME/mooncrest-bot.git
+   git clone https://github.com/fanzirfan/mooncrest-discord.git
    cd mooncrest-bot
    ```
 
@@ -65,31 +73,37 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
    npm install
    ```
 
+2b. **Install ESLint (Dev Dependency)**
+`bash
+    npm install --save-dev eslint @eslint/js globals
+    `
+
 3. **Configure environment variables**
-   
+
    Copy `.env.example` to `.env` and fill in your credentials:
+
    ```bash
    cp .env.example .env
    ```
-   
+
    Required variables:
    - `TOKEN` - Discord bot token
    - `GUILD_ID` - Discord server/guild ID
    - `CLIENT_ID` - Discord application client ID
    - `GEMINI_API_KEY` - Google Gemini API key
-   - `ROBLOX_COOKIE` - Roblox authentication cookie
+   - `ROBLOX_OPENCLOUD_API_KEY` - Roblox Open Cloud API Key
 
 4. **Configure server settings**
-   
+
    Copy `config.json.example` to `src/config.json`:
+
    ```bash
    cp config.json.example src/config.json
    ```
-   
+
    Fill in your Discord server IDs, role IDs, and mountain list.
 
 5. **Setup Firebase**
-   
    - Create a Firebase project
    - Enable Firestore Database
    - Download service account key JSON
@@ -97,9 +111,14 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
    - **⚠️ NEVER commit this file to Git!**
 
 6. **Deploy slash commands**
+
    ```bash
    node index.js
    ```
+
+7. **Development & Linting**
+   - Run lint check: `npm run lint`
+   - Start bot: `npm start`
 
 ---
 
@@ -113,10 +132,11 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 │   ├── schedulers/      # Weekly/monthly reset handlers
 │   ├── utils/           # Helper functions
 │   └── config.json      # Server configuration
-├── tools/               # Gemini AI tools
+├── tools/               # Utility scripts
 ├── .env                 # Environment variables (NOT in Git)
 ├── firebase-adminsdk.json  # Firebase credentials (NOT in Git)
-└── index.js            # Main bot entry point
+├── eslint.config.js     # ESLint configuration
+└── index.js             # Main bot entry point
 ```
 
 ---
@@ -124,26 +144,31 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 ## 🎮 Main Commands
 
 ### XP Management
+
 - `/xp add/remove/set/bonus [username] [amount]` - Manage XP by Roblox username
 - `/xpd add/remove/set/bonus [@user] [amount]` - Manage XP by Discord mention
 - `/batch add/remove/set/bonus [targets] [amount]` - Bulk XP operations
 
 ### User Info
+
 - `/rank [username]` - Check user rank & XP
 - `/stats` - View your expedition statistics
 - `/leaderboard [type]` - View various leaderboards
 
 ### Verification
+
 - `/verify [username]` - Link Roblox account
 - `/link [username] [@user]` - Admin link user to Roblox
 - `/update` - Update your Roblox profile
 - `/sync` - Manual rank sync
 
 ### Rewards
+
 - `/guide add/remove [@user] [points]` - Manage Guide Points
 - `/reward` - Admin-only reward distribution
 
 ### Hall of Fame
+
 - `/hall-of-fame` - View achievement records
 - `/hall-records` - View historical winners
 - `/monthly-winner` - Record monthly winners (admin)
@@ -154,6 +179,7 @@ Discord bot untuk mengelola sistem **Lunar Points (XP)**, **ranking system**, **
 ## 🔐 Security Notes
 
 **NEVER commit these files to GitHub:**
+
 - `.env` - Contains API keys and tokens
 - `firebase-adminsdk.json` - Firebase service account credentials
 - `src/config.json` - Contains your server/role IDs
@@ -165,6 +191,7 @@ These files are already in `.gitignore`. Always use the `.example` versions as t
 ## 📝 Database Schema (Firestore)
 
 ### Users Collection
+
 ```javascript
 {
   robloxId: string,
